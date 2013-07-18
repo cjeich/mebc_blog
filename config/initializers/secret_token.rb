@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-MebcBlog::Application.config.secret_key_base = '7e3b0a074b46b961ec1860c68dc88de159f261a56d88433400e445aaa567cebbac7b0ecb1bfb450eae4d5e18e35a806921f9e85e582e5bad6f4e28f2ca9f7fc5'
+
+require 'securerandom'
+def secure_token
+	token_file = Rails.root.join('.secret')
+	if File.exist?(token_file)
+		# use the existing token
+		File.read(token_file).chomp
+	else
+		# Generate a new token and store it in a token file
+		token - SecureRandom.hex(64)
+		File.write(token_file, token)
+		token
+	end
+end
+
+MebcBlog::Application.config.secret_key_base = secure_token
