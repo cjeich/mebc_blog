@@ -5,14 +5,19 @@ ruby '2.0.0'
 group :development, :test do
 	# Use sqlite3 as the database for Active Record
 	gem 'sqlite3'
- 	gem 'meta_request'
+	gem 'meta_request'
 	gem 'rspec-rails'
- 	gem 'better_errors'
+	gem 'better_errors'
+	gem 'guard-rspec', '2.5.0'
+	gem 'spork-rails', github: 'sporkrb/spork-rails'
+	gem 'guard-spork', '1.5.0'
+	gem 'childprocess', '~>0.3.6'
  end
 
 group :test do
 	gem 'selenium-webdriver', '2.0.0'
 	gem 'capybara', '2.1.0'
+	gem 'growl', '1.0.3'	
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
